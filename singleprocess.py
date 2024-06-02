@@ -8,7 +8,6 @@ import tensorflow as tf
 import sys
 import re
 import json
-import random
 import glob
 from os import listdir
 from os.path import isfile, join
@@ -174,8 +173,6 @@ def get_orientation(device, img, focus):
     LEFT = 3
     con = [0, 0, 0, 0]
 
-    direction = 'n'
-
     for i in range(h):
       if (crop[i, 0] > 0):
         con[LEFT] = 1
@@ -314,7 +311,7 @@ def get_orientation(device, img, focus):
             direction = 'w'
           else:
             direction = 'e'
-    # elif (device == 'xformer'):
+    #elif (device == 'xformer'):
 
     # Take care of components with no polarity
     else:
@@ -634,24 +631,18 @@ class NumpyEncoder(json.JSONEncoder):
 
 # Main function
 def main():
-   # read all file names in the same folder
-    #files = [f for f in os.listdir("./examples")]
-    files = glob.glob("schemanet/pwm-adv/*.png")
-    random.shuffle(files)
-    print(files)
-    for sche in files:
-        print(sche)
-        img, thres = img_proc(sche)
-        skel, comp = find_all(img) 
-        pre = classify(img, skel, comp, '10_categories')
-        nodes = node_detect(thres, pre)
-        wiring_matrix, comp_matrix = matrix_gen(nodes, pre, img)
-        comp_matrix = np.c_[comp_matrix]
-        data_matrix = np.hstack((comp_matrix,wiring_matrix))
-        data_matrix = data_matrix.tolist()
-        wname = sche.replace('.png','.json')
-        with open(wname, "w") as outfile:
-          json.dump(data_matrix, outfile, cls=NumpyEncoder)
+    sche = "schemanet/pwm-adv/33.png"
+    img, thres = img_proc(sche)
+    skel, comp = find_all(img) 
+    pre = classify(img, skel, comp, '10_categories')
+    nodes = node_detect(thres, pre)
+    wiring_matrix, comp_matrix = matrix_gen(nodes, pre, img)
+    comp_matrix = np.c_[comp_matrix]
+    data_matrix = np.hstack((comp_matrix,wiring_matrix))
+    data_matrix = data_matrix.tolist()
+    wname = sche.replace('.png','.json')
+    with open(wname, "w") as outfile:
+       json.dump(data_matrix, outfile, cls=NumpyEncoder)
 
 if __name__ == '__main__':
      sys.exit(main())
