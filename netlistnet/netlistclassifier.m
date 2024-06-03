@@ -3,8 +3,7 @@ clear all,clc,close all
 
 path_directory='pwm-basic'; 
  % Pls note the format of files,change it as required
-original_files=dir([path_directory '/*.json']); 
-
+original_files=dir([path_directory '/*.json']);
 for k=1:length(original_files)
     fname=[path_directory '/' original_files(k).name];
     
