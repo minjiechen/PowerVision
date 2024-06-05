@@ -636,7 +636,7 @@ class NumpyEncoder(json.JSONEncoder):
 def main():
    # read all file names in the same folder
     #files = [f for f in os.listdir("./examples")]
-    files = glob.glob("schemanet/pwm-adv/*.png")
+    files = glob.glob("schematic/islated/isolated/*.png")
     random.shuffle(files)
     print(files)
     for sche in files:
