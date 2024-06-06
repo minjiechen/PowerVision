@@ -1,28 +1,28 @@
 clear all,clc,close all
 
 unzip("imgdata.zip")
-imds = imageDatastore("imgdata", ...
+imds = imageDatastore("isolated", ...
     IncludeSubfolders=true, ...
     LabelSource="foldernames");
 
-numTrainFiles = 30;
+numTrainFiles = 70;
 [imdsTrain,imdsValidation] = splitEachLabel(imds,numTrainFiles,"randomized");
 
 classNames = categories(imdsTrain.Labels);
 
-inputSize = [32 32 1];
-numClasses = 4;
+inputSize = [16 16 1];
+numClasses = 2;
 
 layers = [
     imageInputLayer(inputSize)
-    convolution2dLayer(5,20)
+    convolution2dLayer(10,20)
     batchNormalizationLayer
     reluLayer
     fullyConnectedLayer(numClasses)
     softmaxLayer];
 
-options = trainingOptions("sgdm", ...
-    MaxEpochs=4, ...
+options = trainingOptions("adam", ...
+    MaxEpochs=200, ...
     ValidationData=imdsValidation, ...
     ValidationFrequency=30, ...
     Plots="training-progress", ...

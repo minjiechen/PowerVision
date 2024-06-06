@@ -1,7 +1,7 @@
 clear all,clc,close all
 % netlist classifier
 
-path_directory='jsonfile/isolated/nonisolated'; 
+path_directory='jsonfile/isolated/isolated'; 
  % Pls note the format of files,change it as required
 original_files=dir([path_directory '/*.json']);
 for k=1:length(original_files)
@@ -56,7 +56,7 @@ for k=1:length(original_files)
     newmatrix( ~any(newmatrix,2), : ) = [];  %rows
     newmatrix( :, ~any(newmatrix,1) ) = [];  %columns
     newmatrix(32,32) = 0;
-
-    image = mat2gray(newmatrix,[0 255]);
+    cropmatrix = newmatrix(1:16,1:16);
+    image = mat2gray(cropmatrix,[0 255]);
     imwrite(image, erase([path_directory '/' original_files(k).name '.png'],'.json'));
 end
