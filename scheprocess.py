@@ -636,14 +636,14 @@ class NumpyEncoder(json.JSONEncoder):
 def main():
    # read all file names in the same folder
     #files = [f for f in os.listdir("./examples")]
-    files = glob.glob("schematic/islated/isolated/*.png")
+    files = glob.glob("schematic/isolated/nonisolated/*.png")
     random.shuffle(files)
     print(files)
     for sche in files:
         print(sche)
         img, thres = img_proc(sche)
         skel, comp = find_all(img) 
-        pre = classify(img, skel, comp, '10_categories')
+        pre = classify(img, skel, comp, 'nnmodels')
         nodes = node_detect(thres, pre)
         wiring_matrix, comp_matrix = matrix_gen(nodes, pre, img)
         comp_matrix = np.c_[comp_matrix]
