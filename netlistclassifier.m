@@ -1,7 +1,7 @@
 clear all,clc,close all
 % netlist classifier
 
-path_directory='jsonfile/isolated/isolated'; 
+path_directory='jsonfile/pwm/nonpwm'; 
  % Pls note the format of files,change it as required
 original_files=dir([path_directory '/*.json']);
 for k=1:length(original_files)

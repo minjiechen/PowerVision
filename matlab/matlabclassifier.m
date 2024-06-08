@@ -1,6 +1,6 @@
 clear all,clc,close all
 
-unzip("imgdata.zip")
+unzip("isolated.zip")
 imds = imageDatastore("isolated", ...
     IncludeSubfolders=true, ...
     LabelSource="foldernames");
