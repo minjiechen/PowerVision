@@ -6,6 +6,7 @@ from skimage import morphology
 import os
 import tensorflow as tf
 import sys
+import json
 import re
 
 # ------------------------ Step 1: Image processing -----------------
@@ -621,6 +622,12 @@ def sentence_process(sentence):
 
     return parameters
 
+class NumpyEncoder(json.JSONEncoder):
+  def default(self, obj):
+    if isinstance(obj, np.ndarray):
+      return obj.tolist()
+    return json.JSONEncoder.default(self, obj)
+
 
 # Main function
 def main():
@@ -638,7 +645,7 @@ def main():
     skel, comp = find_all(img)
 
     # Step 3
-    pre = classify(img, skel, comp, '10_categories')
+    pre = classify(img, skel, comp, 'nnmodels')
 
     # Step 4
     nodes = node_detect(thres, pre)
@@ -677,6 +684,13 @@ def main():
     # Step 6
     net = NetList(leimg.split('.')[0].split('/')[-1])
     net.generate(wiring_matrix, comp_matrix, param, time)
+
+    comp_matrix = np.c_[comp_matrix]
+    data_matrix = np.hstack((comp_matrix,wiring_matrix))
+    data_matrix = data_matrix.tolist()
+    wname = leimg.replace('.png','.json')
+    with open(wname, "w") as outfile:
+      json.dump(data_matrix, outfile, cls=NumpyEncoder)
 
     # Step 7
     print("Now plotting input voltage and output voltage...")

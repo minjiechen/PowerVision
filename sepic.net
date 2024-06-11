@@ -1,0 +1,24 @@
+* Netlist for sepic.net
+
+* Sources:
+V1 4 0 5
+
+* Components:
+R1 1 0 10
+C1 1 0 100u
+L1 2 0 10u
+M1 3 p1 0 0 mosfet
+L2 4 3 10u
+D1 2 1 diode
+C2 3 2 100u
+
+* Drivers:
+Vdrv1 p1 0 PULSE(20 0 0 0 0 5.0u 10.0u)
+
+* Models:
+.model mosfet NMOS(Kp=60 Vto=4.5)
+.model diode D
+
+.tran 10m
+
+.end

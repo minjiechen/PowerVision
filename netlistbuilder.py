@@ -164,8 +164,8 @@ class NetList:
         self.components["Vdrv"] = self.components["Vdrv"] + 1
 
         # Create pulse command
-        pulse = "PULSE(20 0 {Tdelay} 0 0 {Ton} {Tperiod})".format\
-            (Tdelay = delay, Ton = offtime, Tperiod = period)
+        pulse = "PULSE(20 0 0 0 0 {Ton} {Tperiod})".format\
+            (Ton = offtime, Tperiod = period)
 
         # Assemble command
         stub = "Vdrv" + str(self.components["Vdrv"]) + " p" + str(d_count) + " " + str(ref) + " " + pulse
@@ -257,6 +257,7 @@ class NetList:
         for step in range(len(steps)):
                 plt.plot(t.get_wave(step), self.rawfile.get_trace(self.traces_in[0]).get_wave(step), label="Vin")
                 plt.plot(t.get_wave(step), (self.rawfile.get_trace(self.traces_out[0]).get_wave(step)), label="Vout")
-
+                plt.plot(t.get_wave(step), (self.rawfile.get_trace("V(2)").get_wave(step)), label="Vsw")
+                plt.plot(t.get_wave(step), (self.rawfile.get_trace("V(p1)").get_wave(step)), label="Vgate")
         plt.legend()
         plt.show()

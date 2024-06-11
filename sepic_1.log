@@ -1,0 +1,23 @@
+Circuit: * Netlist for sepic.net
+
+Limiting rise time of source vdrv1 to 5e-007
+Limiting fall time of source vdrv1 to 5e-007
+Direct Newton iteration for .op point succeeded.
+
+Date: Mon Jun 10 00:37:06 2024
+Total elapsed time: 0.498 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 173306
+traniter = 173300
+tranpoints = 53325
+accept = 42292
+rejected = 11033
+matrix size = 7
+fillins = 0
+solver = Alternate
+Matrix Compiler1: 260 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2:      38 opcodes  0.1/[0.1]/0.1
+

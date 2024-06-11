@@ -1,0 +1,22 @@
+* Netlist for flyback.net
+
+* Sources:
+V1 2 0 5
+
+* Components:
+C1 3 0 100u
+R1 3 0 10
+L1 1 0 10u
+M1 2 p1 1 1 mosfet
+D1 3 1 diode
+
+* Drivers:
+Vdrv1 p1 1 PULSE(20 0  0 0 5.0u 10.0u)
+
+* Models:
+.model mosfet NMOS(Kp=60 Vto=4.5)
+.model diode D
+
+.tran 10m
+
+.end

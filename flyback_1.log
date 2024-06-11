@@ -1,0 +1,22 @@
+Circuit: * Netlist for flyback.net
+
+Limiting rise time of source vdrv1 to 1e-006
+Direct Newton iteration for .op point succeeded.
+
+Date: Sat Jun 08 19:30:11 2024
+Total elapsed time: 0.015 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2320
+traniter = 2314
+tranpoints = 1126
+accept = 1103
+rejected = 23
+matrix size = 6
+fillins = 0
+solver = Alternate
+Matrix Compiler1: 344 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2: 494 bytes object code size  0.1/0.2/[0.1]
+
