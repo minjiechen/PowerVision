@@ -3,3 +3,5 @@
 This site provides the latest information about Power Electronics Turing Test, an open-source project initiated by the Power Electronics Lab at Princeton University to enable Strong AI in power electronics.
 
 <img src="image/turing.png" width="600">
+
+An earlier version of the PowerVision implementation can be found from [https://github.com/dc2326/PowerVision Dak Cheng's Repository].
